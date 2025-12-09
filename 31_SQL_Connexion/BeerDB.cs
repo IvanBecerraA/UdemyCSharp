@@ -90,5 +90,17 @@ namespace _31_SQL_Connexion
 
             Close();
         }
+
+        public void Delete(int id) 
+        {
+            Connect();
+
+            string query = "DELETE FROM Beer WHERE id = @id";
+            SqlCommand command = new SqlCommand(query, _connection);
+            command.Parameters.AddWithValue("@id", id);
+            command.ExecuteNonQuery();
+
+            Close();
+        }
     }
 }
