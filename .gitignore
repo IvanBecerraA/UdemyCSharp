@@ -1,0 +1,91 @@
+## Build results
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+
+# Visual Studio files
+.vs/
+.vscode/
+
+# User-specific files
+*.user
+*.suo
+*.sln.docstates
+*.userosscache
+*.sln.ide
+
+# Caches
+*.cache
+*.aps
+*.dbmdl
+*.pdb
+_ReSharper*/
+*.DotSettings.user
+
+# Rider
+.idea/
+
+# NuGet
+packages/
+*.nupkg
+*.snupkg
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# .NET Core
+*.deps.json
+
+# Publish output
+publish/
+out/
+
+# Debug & Trace files
+*.pidb
+*.svclog
+TestResult*/
+*.coverage
+*.coveragexml
+
+# Logs
+*.log
+
+# Temporary files
+~$*
+*.tmp
+*.bak
+
+# Database files
+*.mdf
+*.ldf
+*.db
+*.sqlite
+
+# Generated code
+*_i.c
+*_p.c
+*.ilk
+
+# OS files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Certificates
+*.pfx
+*.p12
+
+# TFS
+$tf/
+
+# Azure
+csx/
+*.publishsettings
+orleans.codegen.cs
+
+# BenchmarkDotNet
+BenchmarkDotNet.Artifacts/
+
+# JetBrains Rider
+.idea/
+modules.xml
