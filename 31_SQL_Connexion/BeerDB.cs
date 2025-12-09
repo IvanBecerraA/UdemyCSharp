@@ -15,6 +15,7 @@ namespace _31_SQL_Connexion
 
         }
 
+
         public List<Beer> GetAll()
         {
             Connect();
@@ -36,6 +37,21 @@ namespace _31_SQL_Connexion
 
             Close();
             return beers;
+        }
+
+
+        public void Add(Beer beer)
+        {
+            Connect();
+
+            string query = "INSERT INTO Beer(Name, BrandId) " +
+                "VALUES (@name, @brandId)";
+            SqlCommand command = new SqlCommand(query, _connection);
+            command.Parameters.AddWithValue("@name", beer.Name);
+            command.Parameters.AddWithValue("@brandId", beer.BrandId);
+            command.ExecuteNonQuery();
+
+            Close();
         }
     }
 }
