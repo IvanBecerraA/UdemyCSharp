@@ -1,6 +1,7 @@
 ﻿using _31_SQL_Connexion;
 using System.Data.SqlClient;
 using System.Security;
+using System.Threading.Channels;
 
 
 try
@@ -23,6 +24,9 @@ try
                 break;
             case 2:
                 Add(beerDB);
+                break;
+            case 3:
+                Edit(beerDB);
                 break;
             case 5:
                 again = false;
@@ -58,7 +62,7 @@ static void Show(BeerDB beerDB)
     List<Beer> beers = beerDB.GetAll();
     foreach (Beer beer in beers)
     {
-        Console.WriteLine(beer.Name);
+        Console.WriteLine($"Id: {beer.Id}, Nombre: {beer.Name}");
     }
 }
 
@@ -72,4 +76,31 @@ static void Add(BeerDB beerDB)
     int brandId = int.Parse(Console.ReadLine());
     Beer beer = new Beer(name, brandId);
     beerDB.Add(beer);
+}
+
+static void Edit(BeerDB beerDB)
+{
+    Console.Clear();
+    Show(beerDB);
+    Console.WriteLine("Editar Cerveza");
+    Console.WriteLine("Escribe el id de tu cerveza a editar: ");
+    int id = int.Parse(Console.ReadLine());
+
+    Beer beer = beerDB.Get(id);
+    if (beer != null)
+    {
+        Console.WriteLine("Escribe el nombre: ");
+        string name = Console.ReadLine();
+        Console.WriteLine("Escribe el id de la marca: ");
+        int brandId = int.Parse(Console.ReadLine());
+
+        beer.Name = name;
+        beer.BrandId = brandId;
+
+        beerDB.Edit(beer);
+    }
+    else
+    {
+        Console.WriteLine("La cerveza no existe");
+    }
 }
