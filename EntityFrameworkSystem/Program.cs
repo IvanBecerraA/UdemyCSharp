@@ -7,17 +7,60 @@ DbContextOptionsBuilder<CsharpDbContext> optionsBuilder =
 optionsBuilder.UseSqlServer("Server=localhost;Database=CSharpDB;Trusted_Connection;");
 
 
-using (CsharpDbContext context = new CsharpDbContext(optionsBuilder.Options))
+bool again = true;
+int op = 0;
+
+do
 {
-    var beers = context.Beers.ToList();
+    ShowMenu();
+    Console.WriteLine("Elige una opción: ");
+    op = int.Parse(Console.ReadLine());
 
-    foreach (var beer in beers)
+    switch (op)
     {
-        Console.WriteLine(beer.Name);
-    }
+        case 1:
+            Show(optionsBuilder);
+            break;
+        case 2:
+            break;
 
+    }
+} while (again);
+
+
+static void ShowMenu()
+{
+    Console.WriteLine("\n-------------Menu------------");
+    Console.WriteLine("1.- Mostrar");
+    Console.WriteLine("2.- Agregar");
+    Console.WriteLine("3.- Editar");
+    Console.WriteLine("4.- Eliminar");
+    Console.WriteLine("5.- Salir");
 }
 
 
+static void Show(DbContextOptionsBuilder<CsharpDbContext> optionsBuilder)
+{
+    Console.Clear();
+    Console.WriteLine("Cervezas en la base de datos: ");
+    using (var context = new CsharpDbContext(optionsBuilder.Options))
+    {
+        //List<Beer> beers = context.Beers.ToList();
+        List<Beer> beers = context.Beers.Where(b => b.BrandId == 2)
+            .Include(b => b.Brand)
+            .OrderBy(b => b.Name)
+            .ToList();
 
+        List<Beer> beers2 = (from b in context.Beers
+                             where b.BrandId == 2
+                             orderby b.Name
+                             select b)
+                             .Include(b => b.Brand)
+                             .ToList();
 
+        foreach (Beer beer in beers)
+        {
+            Console.WriteLine($"Id: {beer.Id}, Nombre: {beer.Name}, Brand: {beer.Brand.Name}");
+        }
+    }
+}
