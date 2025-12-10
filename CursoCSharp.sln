@@ -61,6 +61,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "31_SQL_Connexion", "31_SQL_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB", "DB\DB.csproj", "{826CE747-4D43-49A3-B0CE-074074766B25}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkSystem", "EntityFrameworkSystem\EntityFrameworkSystem.csproj", "{4369975F-8FF3-4E17-B80B-E0E28AA1044C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -183,6 +185,10 @@ Global
 		{826CE747-4D43-49A3-B0CE-074074766B25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{826CE747-4D43-49A3-B0CE-074074766B25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{826CE747-4D43-49A3-B0CE-074074766B25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4369975F-8FF3-4E17-B80B-E0E28AA1044C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4369975F-8FF3-4E17-B80B-E0E28AA1044C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4369975F-8FF3-4E17-B80B-E0E28AA1044C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4369975F-8FF3-4E17-B80B-E0E28AA1044C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
