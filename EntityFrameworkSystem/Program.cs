@@ -24,6 +24,9 @@ do
         case 2:
             Add(optionsBuilder);
             break;
+        case 3:
+            Edit(optionsBuilder);
+            break;
 
     }
 } while (again);
@@ -84,5 +87,35 @@ static void Add(DbContextOptionsBuilder<CsharpDbContext> optionsBuilder)
         };
         context.Add(beer);
         context.SaveChanges();
+    }
+}
+
+
+static void Edit(DbContextOptionsBuilder<CsharpDbContext> optionsBuilder)
+{
+    Console.Clear();
+    Show(optionsBuilder);
+    Console.WriteLine("Editar cerveza");
+    Console.WriteLine("Escribe el id de tu cerveza a editar");
+    int id = int.Parse(Console.ReadLine());
+    using (var context = new CsharpDbContext(optionsBuilder.Options)) 
+    { 
+        Beer beer = context.Beers.Find(id);
+        if (beer != null) 
+        {
+            Console.WriteLine("Escribe el nombre: ");
+            string name = Console.ReadLine();
+            Console.WriteLine("Escribe el id de la marca: ");
+            int brandId = int.Parse(Console.ReadLine());
+            beer.Name = name;
+            beer.BrandId = brandId;
+            context.Entry(beer).State = EntityState.Modified;
+            context.SaveChanges();
+        }
+        else
+        {
+            Console.WriteLine("Cerveza no existe");
+        }
+
     }
 }
