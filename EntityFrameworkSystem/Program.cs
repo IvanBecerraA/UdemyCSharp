@@ -22,6 +22,7 @@ do
             Show(optionsBuilder);
             break;
         case 2:
+            Add(optionsBuilder);
             break;
 
     }
@@ -62,5 +63,26 @@ static void Show(DbContextOptionsBuilder<CsharpDbContext> optionsBuilder)
         {
             Console.WriteLine($"Id: {beer.Id}, Nombre: {beer.Name}, Brand: {beer.Brand.Name}");
         }
+    }
+}
+
+
+static void Add(DbContextOptionsBuilder<CsharpDbContext> optionsBuilder)
+{
+    Console.Clear();
+    Console.WriteLine("Agregar nueva cervaza");
+    Console.WriteLine("Escribe el nombre: ");
+    string name = Console.ReadLine();
+    Console.WriteLine("Escribe el id de la marca: ");
+    int brandId = int.Parse(Console.ReadLine());
+    using (var context = new CsharpDbContext(optionsBuilder.Options))
+    {
+        Beer beer = new Beer()
+        {
+            Name = name,
+            BrandId = brandId
+        };
+        context.Add(beer);
+        context.SaveChanges();
     }
 }
