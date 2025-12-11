@@ -27,6 +27,12 @@ do
         case 3:
             Edit(optionsBuilder);
             break;
+        case 4:
+            Delete(optionsBuilder);
+            break;
+        case 5:
+            again = false;
+            break;
 
     }
 } while (again);
@@ -110,6 +116,29 @@ static void Edit(DbContextOptionsBuilder<CsharpDbContext> optionsBuilder)
             beer.Name = name;
             beer.BrandId = brandId;
             context.Entry(beer).State = EntityState.Modified;
+            context.SaveChanges();
+        }
+        else
+        {
+            Console.WriteLine("Cerveza no existe");
+        }
+
+    }
+}
+
+static void Delete(DbContextOptionsBuilder<CsharpDbContext> optionsBuilder)
+{
+    Console.Clear();
+    Show(optionsBuilder);
+    Console.WriteLine("Eliminar cerveza");
+    Console.WriteLine("Escribe el id de tu cerveza a eliminar");
+    int id = int.Parse(Console.ReadLine());
+    using (var context = new CsharpDbContext(optionsBuilder.Options)) 
+    { 
+        Beer beer = context.Beers.Find(id);
+        if (beer != null) 
+        {
+            context.Beers.Remove(beer);
             context.SaveChanges();
         }
         else
