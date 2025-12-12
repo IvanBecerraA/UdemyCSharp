@@ -26,13 +26,24 @@ Action<string, string, string> showMessage4 = (a, b, c) => Console.WriteLine($"{
 
 
 
-showMessage2("Iván", "Becerra");
-showMessage4("Iván", "Becerra", "Dev");
+//showMessage2("Iván", "Becerra");
+//showMessage4("Iván", "Becerra", "Dev");
 
-Functions.SomeAction("Iván", "Becerra", (a) => Console.WriteLine("soy una expresión lambda. " + a));
+//Functions.SomeAction("Iván", "Becerra", (a) => Console.WriteLine("soy una expresión lambda. " + a));
 
 //Functions.SomeAction("Iván", "Becerra", showMessage);
 
+
+#endregion
+
+
+#region Func
+
+Func<int> numberRandom = () => new Random().Next(0, 100);
+Console.WriteLine(numberRandom());
+
+Func<int,int> numberRandomLimit = (limit) => new Random().Next(0, limit);
+Console.WriteLine(numberRandomLimit(10));
 
 #endregion
 
