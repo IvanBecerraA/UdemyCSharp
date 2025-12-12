@@ -8,10 +8,13 @@ Show show = Functions.ConsoleShow;
 show("Hola mundo!");
 
 Show cw = Console.WriteLine;
-cw("Hola mundo2!")
+cw += Functions.ConsoleShow; // Multi difucion
+//cw("Hola mundo2!");
+
+Functions.Some("Iván", "Becerra", cw);
 
 delegate int Operation(int a, int b);
-delegate void Show(string message);
+public delegate void Show(string message);
 
 
 public class Functions
@@ -20,5 +23,12 @@ public class Functions
 
     public static int Mul(int num1, int num2) => num1 * num2;
 
-    public static void ConsoleShow(string m) => Console.WriteLine(m);
+    public static void ConsoleShow(string m) => Console.WriteLine(m.ToUpper());
+
+    public static void Some(string name, string lastName, Show fn)
+    {
+        Console.WriteLine("Hago algo al inicio");
+        fn($"Hola {name} {lastName}");
+        Console.WriteLine("Hago algo al final");
+    }
 }
