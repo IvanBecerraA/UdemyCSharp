@@ -15,9 +15,24 @@ cw += Functions.ConsoleShow; // Multi difucion
 
 #region Action
 
+string hi = "Hola";
 Action<string> showMessage = Console.WriteLine;
+Action<string, string> showMessage2 = (a, b) => Console.WriteLine($"{a} {b}");
+Action<string, string> showMessage3 = (a, b) =>
+{
+    Console.WriteLine($"{hi} {a} {b}");
+};
+Action<string, string, string> showMessage4 = (a, b, c) => Console.WriteLine($"{a} {b} {c}");
 
-Functions.SomeAction("Iván", "Becerra", showMessage);
+
+
+showMessage2("Iván", "Becerra");
+showMessage4("Iván", "Becerra", "Dev");
+
+Functions.SomeAction("Iván", "Becerra", (a) => Console.WriteLine("soy una expresión lambda. " + a));
+
+//Functions.SomeAction("Iván", "Becerra", showMessage);
+
 
 #endregion
 
