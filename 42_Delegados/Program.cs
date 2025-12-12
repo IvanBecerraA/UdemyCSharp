@@ -13,6 +13,7 @@ cw += Functions.ConsoleShow; // Multi difucion
 
 //Functions.Some("Iván", "Becerra", cw);
 
+// Action no retorna
 #region Action
 
 string hi = "Hola";
@@ -36,15 +37,37 @@ Action<string, string, string> showMessage4 = (a, b, c) => Console.WriteLine($"{
 
 #endregion
 
-
+// Func retorna
 #region Func
 
 Func<int> numberRandom = () => new Random().Next(0, 100);
-Console.WriteLine(numberRandom());
+//Console.WriteLine(numberRandom());
 
 Func<int,int> numberRandomLimit = (limit) => new Random().Next(0, limit);
-Console.WriteLine(numberRandomLimit(10));
+//Console.WriteLine(numberRandomLimit(10));
 
+#endregion
+
+
+#region Predicate
+
+Predicate<string> hasSpace = (word) => word.Contains(" ");
+Console.WriteLine(hasSpace("tengo espacio"));
+
+Predicate<string> hasSpaceOrA = (word) => word.Contains(" ") || word.ToUpper().Contains("A");
+Console.WriteLine(hasSpaceOrA("tengoa"));
+
+Console.WriteLine("----------------------");
+var words = new List<string>() 
+{
+    "beer",
+    "patito",
+    "sandia",
+    "hola mundo",
+    "c#"
+};
+var wordsNew = words.FindAll((w) => !hasSpaceOrA(w));
+foreach (var w in wordsNew) Console.WriteLine(w);
 #endregion
 
 
